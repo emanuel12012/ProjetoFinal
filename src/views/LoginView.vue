@@ -10,7 +10,7 @@
     </div>
     <p>
         Você não tem conta?
-        <a href=""></a>Crie uma conta</a>
+        <a href="">/a>Crie uma conta</a>
     </p>
 </div>
 </template>
@@ -18,7 +18,7 @@
 <script>
 
 export default {
-    name: "login",
+    name: "LoginView",
     data() {
         return{};
     },
@@ -26,4 +26,3 @@ export default {
 };
 
 </script>
-<style scoped>
