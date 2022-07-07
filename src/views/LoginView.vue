@@ -10,7 +10,7 @@
     </div>
     <p>
         Você não tem conta?
-        <a href="">/a>Crie uma conta</a>
+        <a href="">Crie uma conta</a>
     </p>
 </div>
 </template>

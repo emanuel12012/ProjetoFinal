@@ -19,7 +19,7 @@ import TheWelcome from '@/components/TheWelcome.vue'
 import DashboardView from './DashboardView.vue';
 
 export default {
-    name: "Pedidos",
+    name: "PedidosView",
     components: { 
       DashboardView 
       }
