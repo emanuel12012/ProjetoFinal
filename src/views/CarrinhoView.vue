@@ -1,12 +1,12 @@
 <script>
 import { mapState, mapStores, mapActions } from "pinia";
-import { useProductStore } from "@/stores/product";
+import { useBookStore } from "@/stores/book";
 import { useCategoryStore } from "@/stores/category";
 
 export default {
   data() {
     return {
-      currentProduct: {
+      currentBook: {
         id: "",
         name: "",
         categoryId: "",
@@ -16,44 +16,44 @@ export default {
     };
   },
   computed: {
-    ...mapStores(useProductStore),
-    ...mapState(useProductStore, ["products"]),
+    ...mapStores(useBookStore),
+    ...mapState(useBookStore, ["books"]),
     ...mapState(useCategoryStore, ["categories"]),
   },
   methods: {
-    ...mapActions(useProductStore, [
-      "getAllProducts",
-      "saveProduct",
-      "deleteProduct",
+    ...mapActions(useBookStore, [
+      "getAllooks",
+      "saveBook",
+      "deleteBook",
     ]),
     ...mapActions(useCategoryStore, ["getAllCategories"]),
     async save() {
       try {
-        const msg = await this.saveProduct(this.currentProduct);
+        const msg = await this.saveBook(this.currentBook);
         alert(msg);
         this.editing = false;
-        this.currentProduct = {};
+        this.currentBook = {};
       } catch (e) {
         alert("Ooops! Algo de errado!");
       }
     },
-    async deleteItem(product_id) {
+    async deleteItem(book_id) {
       try {
-        await this.deleteProduct(product_id);
+        await this.deleteBook(book_id);
         alert("Item excluído com sucesso.");
       } catch (e) {
         alert(e);
       }
     },
-    prepareToUpdate(product) {
-      Object.assign(this.currentProduct, product);
+    prepareToUpdate(book) {
+      Object.assign(this.currentBook, book);
       this.editing = true;
     },
   },
   async mounted() {
     try {
       await this.getAllCategories();
-      await this.getAllProducts();
+      await this.getAllBooks();
     } catch (e) {
       alert(e);
     }
@@ -61,10 +61,10 @@ export default {
 };
 </script>
 <template>
-  <h1>Cadastro de Produtos</h1>
-  <div class="product-form">
-    <input type="text" v-model="currentProduct.name" />
-    <select v-model="currentProduct.categoryId">
+  <h1>Cadastro de Livros</h1>
+  <div class="book-form">
+    <input type="text" v-model="currentBook.name" />
+    <select v-model="currentBook.categoryId">
       <option
         v-for="category in categories"
         :value="category.id"
@@ -77,7 +77,7 @@ export default {
       {{ editing ? "Salvar" : "Adicionar" }}
     </button>
   </div>
-  <div class="product-list">
+  <div class="book-list">
     <table class="table">
       <thead>
         <tr>
@@ -96,9 +96,9 @@ export default {
         </tr>
       </thead>
       <tbody>
-        <tr v-for="product of products" :key="product.id">
-          <td>{{ product.id }}</td>
-          <td>{{ product.name }}</td>
+        <tr v-for="book of books" :key="book.id">
+          <td>{{ book.id }}</td>
+          <td>{{ book.name }}</td>
           <td>{{ product.category.description }}</td>
           <td>
             <button @click="prepareToUpdate(product)">Update</button>
@@ -111,7 +111,7 @@ export default {
 </template>
 
 <style scoped>
-.product-form input {
+.book-form input {
   width: 40%;
   height: 40px;
   border-radius: 20px;
@@ -120,7 +120,7 @@ export default {
   font-size: 1.2em;
 }
 
-.product-form select {
+.book-form select {
   width: 30%;
   height: 40px;
   border-radius: 20px;
@@ -130,7 +130,7 @@ export default {
   margin-left: 1%;
 }
 
-.product-form button {
+.book-form button {
   height: 35px;
   width: 20%;
   margin-left: 2%;
@@ -141,8 +141,8 @@ export default {
   border: 0;
 }
 
-.product-list,
-.product-form {
+.book-list,
+.book-form {
   margin: 3% auto;
   width: 70%;
 }

@@ -9,20 +9,20 @@ export const useCategoryStore = defineStore({
   actions: {
     async getAllCategories() {
       try {
-        const { data } = await axios.get("http://localhost:4000/categories");
+        const { data } = await axios.get("https://backend-livraria-rudinei.herokuapp.com/categories");
         this.categories = data;
         return Promise.resolve();
       } catch (e) {
         console.error(e);
         if (e.response.status === 404)
           return Promise.reject(e.response.statusText);
-        return Promise.reject("Erro desconhecido ao consultar 'Catgory'");
+        return Promise.reject("Erro desconhecido ao consultar 'Category'");
       }
     },
     async addCategory(category) {
       try {
         const { data } = await axios.post(
-          "http://localhost:4000/categories",
+          "https://backend-livraria-rudinei.herokuapp.com/categories",
           category
         );
         this.categories.push(data);
@@ -35,7 +35,7 @@ export const useCategoryStore = defineStore({
     async updateCategory(category) {
       try {
         await axios.put(
-          `http://localhost:4000/categories/${category.id}`,
+          `https://backend-livraria-rudinei.herokuapp.com/categories/${category.id}`,
           category
         );
         const index = this.categories.findIndex((c) => c.id === category.id);
@@ -55,7 +55,7 @@ export const useCategoryStore = defineStore({
     },
     async deleteCategory(category_id) {
       try {
-        await axios.delete(`http://localhost:4000/categories/${category_id}`);
+        await axios.delete(`https://backend-livraria-rudinei.herokuapp.com/categories/${category_id}`);
         const index = this.categories.findIndex(
           (category) => category.id === category_id
         );
