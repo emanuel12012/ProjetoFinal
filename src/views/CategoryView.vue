@@ -1,6 +1,7 @@
 <script>
 import ListCategory from "../components/category/ListCategory.vue";
 import FormCategory from "../components/category/FormCategory.vue";
+
 export default {
   components: { ListCategory, FormCategory },
   data() {
@@ -11,6 +12,7 @@ export default {
       },
     };
   },
+
   methods: {
     prepareToUpdate(category) {
       Object.assign(this.currentCategory, category);

@@ -49,7 +49,7 @@ export const useBookStore = defineStore({
         return Promise.reject(e);
       }
     },
-    async saveProduct(book) {
+    async saveBook(book) {
       if (book.id) {
         return await this.updateBook(book);
       } else {
