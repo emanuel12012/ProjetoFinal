@@ -21,11 +21,7 @@ export default {
     ...mapState(useCategoryStore, ["categories"]),
   },
   methods: {
-    ...mapActions(useBookStore, [
-      "getAllBooks",
-      "saveBook",
-      "deleteBook",
-    ]),
+    ...mapActions(useBookStore, ["getAllBooks", "saveBook", "deleteBook"]),
     ...mapActions(useCategoryStore, ["getAllCategories"]),
     async save() {
       try {

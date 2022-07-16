@@ -55,7 +55,9 @@ export const useCategoryStore = defineStore({
     },
     async deleteCategory(category_id) {
       try {
-        await axios.delete(`https://backend-livraria-rudinei.herokuapp.com/categories/${category_id}`);
+        await axios.delete(
+          `https://backend-livraria-rudinei.herokuapp.com/categories/${category_id}`
+        );
         const index = this.categories.findIndex(
           (category) => category.id === category_id
         );

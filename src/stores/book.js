@@ -7,7 +7,7 @@ export const useBookStore = defineStore({
     books: [],
   }),
   actions: {
-    async getAllbooks() {
+    async getAllBooks() {
       try {
         const { data } = await axios.get(
           "https://backend-livraria-rudinei.herokuapp.com/books?expand=category"
@@ -21,7 +21,7 @@ export const useBookStore = defineStore({
         return Promise.reject("Erro desconhecido ao consultar 'Books'");
       }
     },
-    async addBooks(book) {
+    async addBook(book) {
       try {
         const { data } = await axios.post(
           "https://backend-livraria-rudinei.herokuapp.com/books",
@@ -58,10 +58,10 @@ export const useBookStore = defineStore({
     },
     async deleteBook(book_id) {
       try {
-        await axios.delete(`https://backend-livraria-rudinei.herokuapp.com/books/${book_id}`);
-        const index = this.books.findIndex(
-          (book) => book.id === book_id
+        await axios.delete(
+          `https://backend-livraria-rudinei.herokuapp.com/books/${book_id}`
         );
+        const index = this.books.findIndex((book) => book.id === book_id);
         this.books.splice(index, 1);
         return Promise.resolve();
       } catch (e) {
