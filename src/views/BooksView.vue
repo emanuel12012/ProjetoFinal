@@ -8,11 +8,12 @@ export default {
     return {
       currentBook: {
         id: "",
-        title: "",
+        name: "",
         categoryId: "",
+        category: {},
         publisherId: "",
       },
-      editing: true,
+      editing: false,
     };
   },
   computed: {
@@ -21,11 +22,15 @@ export default {
     ...mapState(useCategoryStore, ["categories"]),
   },
   methods: {
-    ...mapActions(useBookStore, ["getAllBooks", "saveBook", "deleteBook"]),
+    ...mapActions(useBookStore, [
+      "getAllbooks",
+      "saveBook",
+      "deleteBook",
+    ]),
     ...mapActions(useCategoryStore, ["getAllCategories"]),
     async save() {
       try {
-        const msg = await this.saveBook(this.currentBook);
+        const msg = await this.saveProduct(this.currentBook);
         alert(msg);
         this.editing = false;
         this.currentBook = {};
@@ -49,7 +54,7 @@ export default {
   async mounted() {
     try {
       await this.getAllCategories();
-      await this.getAllBooks();
+      await this.getAllbooks();
     } catch (e) {
       alert(e);
     }
@@ -81,7 +86,7 @@ export default {
             <span> <h2>ID</h2> </span>
           </th>
           <th class="text-left">
-            <span> <h2>Título</h2> </span>
+            <span> <h2>Descrição</h2> </span>
           </th>
           <th class="text-left">
             <span> <h2>Category</h2> </span>
@@ -89,17 +94,20 @@ export default {
           <th class="text-left">
             <span> <h2>Editora</h2> </span>
           </th>
+          <th class="text-left">
+            <span> <h2>Ações</h2> </span>
+          </th>
         </tr>
       </thead>
       <tbody>
         <tr v-for="book of books" :key="book.id">
           <td>{{ book.id }}</td>
           <td>{{ book.title }}</td>
-          <td>{{ product.categoryId }}</td>
-          <td>{{ product.publisherId }}</td>
+          <td>{{ book.category.description }}</td>
+          <td>{{ book.publisherId }}</td>
           <td>
-            <button @click="prepareToUpdate(product)">Update</button>
-            <button @click="deleteItem(product.id)">Delete</button>
+            <button @click="prepareToUpdate(book)">Update</button>
+            <button @click="deleteItem(book.id)">Delete</button>
           </td>
         </tr>
       </tbody>
