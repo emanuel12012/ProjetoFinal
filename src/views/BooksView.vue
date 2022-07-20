@@ -19,7 +19,7 @@ export default {
     ...mapStores(useBookStore),
     ...mapState(useBookStore, ["books"]),
     ...mapState(useCategoryStore, ["categories"]),
-    //..mapState(usePublisherStore, ["publishers"]),
+   // ...mapState(usePublisherStore, ["publishers"]),
   },
   methods: {
     ...mapActions(useBookStore, [
@@ -56,6 +56,7 @@ export default {
     try {
       await this.getAllCategories();
       await this.getAllBooks();
+      await this.getAllPublishers();
     } catch (e) {
       alert(e);
     }
@@ -75,6 +76,20 @@ export default {
         {{ category.description }}
       </option>
     </select>
+
+    <input type="text" v-model="currentBook.name" />
+    <select v-model="currentBook.publisherId">
+      <option
+        v-for="publisher in publishers"
+        :value="publisher.id"
+        :key="publisher.id"
+      >
+        {{ category.description }}
+      </option>
+    </select>
+    
+    
+     
     <button @click="save">
       {{ editing ? "Salvar" : "Adicionar" }}
     </button>
