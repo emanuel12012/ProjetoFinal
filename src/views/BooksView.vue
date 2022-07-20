@@ -10,8 +10,7 @@ export default {
         id: "",
         name: "",
         categoryId: "",
-        category: {},
-        publisherId: "",
+        publisherId: "",        
       },
       editing: false,
     };
@@ -20,17 +19,19 @@ export default {
     ...mapStores(useBookStore),
     ...mapState(useBookStore, ["books"]),
     ...mapState(useCategoryStore, ["categories"]),
+    //..mapState(usePublisherStore, ["publishers"]),
   },
   methods: {
     ...mapActions(useBookStore, [
-      "getAllbooks",
+      "getAllBooks",
       "saveBook",
       "deleteBook",
     ]),
     ...mapActions(useCategoryStore, ["getAllCategories"]),
     async save() {
       try {
-        const msg = await this.saveProduct(this.currentBook);
+        
+        const msg = await this.saveBook(this.currentBook);
         alert(msg);
         this.editing = false;
         this.currentBook = {};
@@ -54,7 +55,7 @@ export default {
   async mounted() {
     try {
       await this.getAllCategories();
-      await this.getAllbooks();
+      await this.getAllBooks();
     } catch (e) {
       alert(e);
     }
@@ -102,7 +103,7 @@ export default {
       <tbody>
         <tr v-for="book of books" :key="book.id">
           <td>{{ book.id }}</td>
-          <td>{{ book.title }}</td>
+          <td>{{ book.name }}</td>
           <td>{{ book.category.description }}</td>
           <td>{{ book.publisherId }}</td>
           <td>
