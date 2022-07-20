@@ -2,7 +2,7 @@
 import { mapState, mapStores, mapActions } from "pinia";
 import { useBookStore } from "@/stores/book";
 import { useCategoryStore } from "@/stores/category";
-
+import { usePublisherStore } from "@/stores/publisher";
 export default {
   data() {
     return {
@@ -19,7 +19,7 @@ export default {
     ...mapStores(useBookStore),
     ...mapState(useBookStore, ["books"]),
     ...mapState(useCategoryStore, ["categories"]),
-   // ...mapState(usePublisherStore, ["publishers"]),
+    ...mapState(usePublisherStore, ["publishers"]),
   },
   methods: {
     ...mapActions(useBookStore, [
@@ -28,6 +28,7 @@ export default {
       "deleteBook",
     ]),
     ...mapActions(useCategoryStore, ["getAllCategories"]),
+    ...mapActions(usePublisherStore, ["getAllPublishers"]),
     async save() {
       try {
         
@@ -77,14 +78,13 @@ export default {
       </option>
     </select>
 
-    <input type="text" v-model="currentBook.name" />
-    <select v-model="currentBook.publisherId">
+      <select v-model="currentBook.publisherId">
       <option
         v-for="publisher in publishers"
         :value="publisher.id"
         :key="publisher.id"
       >
-        {{ category.description }}
+        {{ publisher.description }}
       </option>
     </select>
     
