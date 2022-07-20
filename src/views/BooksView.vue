@@ -8,7 +8,7 @@ export default {
     return {
       currentBook: {
         id: "",
-        name: "",
+        title: "",
         categoryId: "",
         publisherId: "",        
       },
@@ -67,7 +67,7 @@ export default {
 <template>
   <h1>Cadastro de Livros</h1>
   <div class="book-form">
-    <input type="text" v-model="currentBook.name" />
+    <input type="text" v-model="currentBook.title" />
     <select v-model="currentBook.categoryId">
       <option
         v-for="category in categories"
@@ -102,10 +102,10 @@ export default {
             <span> <h2>ID</h2> </span>
           </th>
           <th class="text-left">
-            <span> <h2>Descrição</h2> </span>
+            <span> <h2>Título</h2> </span>
           </th>
           <th class="text-left">
-            <span> <h2>Category</h2> </span>
+            <span> <h2>Categoria</h2> </span>
           </th>
           <th class="text-left">
             <span> <h2>Editora</h2> </span>
@@ -118,7 +118,7 @@ export default {
       <tbody>
         <tr v-for="book of books" :key="book.id">
           <td>{{ book.id }}</td>
-          <td>{{ book.name }}</td>
+          <td>{{ book.title }}</td>
           <td>{{ book.category.description }}</td>
           <td>{{ book.publisher.description }}</td>
           <td>
@@ -133,7 +133,7 @@ export default {
 
 <style scoped>
 .book-form input {
-  width: 40%;
+  width: 30%;
   height: 40px;
   border-radius: 20px;
   border: 1px solid gray;
@@ -142,7 +142,7 @@ export default {
 }
 
 .book-form select {
-  width: 30%;
+  width: 25%;
   height: 40px;
   border-radius: 20px;
   border: 1px solid gray;
@@ -153,9 +153,9 @@ export default {
 
 .book-form button {
   height: 35px;
-  width: 20%;
+  width: 15%;
   margin-left: 2%;
-  background-color: rgb(63, 63, 125);
+  background-color: #2596be;
   color: whitesmoke;
   font-size: 1.2em;
   border-radius: 20px;
