@@ -120,7 +120,7 @@ export default {
           <td>{{ book.id }}</td>
           <td>{{ book.name }}</td>
           <td>{{ book.category.description }}</td>
-          <td>{{ book.publisherId }}</td>
+          <td>{{ book.publisher.description }}</td>
           <td>
             <button @click="prepareToUpdate(book)">Update</button>
             <button @click="deleteItem(book.id)">Delete</button>

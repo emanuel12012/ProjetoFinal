@@ -10,7 +10,7 @@ export const useBookStore = defineStore({
     async getAllBooks() {
       try {
         const { data } = await axios.get(
-          "https://backend-livraria-rudinei.herokuapp.com/books?expand=category"
+          "https://backend-livraria-rudinei.herokuapp.com/books?expand=category&expand=publisher"
         );
         this.books = data;
         return Promise.resolve();
