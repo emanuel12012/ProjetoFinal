@@ -6,7 +6,7 @@
     <input type="password" placeholder="Senha">
     <br>
     <div class="btn-login">
-        <button>Login</button>
+        <button @click="save">Login</button>
     </div>
     <p>
         Você não tem conta?
@@ -28,9 +28,19 @@ export default {
 </script>
 
 
-<!-- <script setup></script>
+<style scoped>
 
-<template>
-  <h1>Sistema de gestão de produtos</h1>
-  <h2>Fazer uma landpage</h2>
-</template> -->
+
+
+.publisher-form button {
+  height: 35px;
+  width: 20%;
+  margin-left: 2%;
+  background-color: rgb(63, 63, 125);
+  color: whitesmoke;
+  font-size: 1.2em;
+  border-radius: 20px;
+  border: 0;
+}
+</style>
+
