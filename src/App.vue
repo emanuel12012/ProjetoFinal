@@ -9,9 +9,10 @@ import { RouterLink, RouterView } from 'vue-router'
       <nav>
         <RouterLink to="/">Home</RouterLink> |
         <RouterLink to="/category">Category</RouterLink> |
-        <RouterLink to="/publisher">Publisher</RouterLink> |
-        <RouterLink to="/books">Books</RouterLink>
-        
+        <RouterLink to="/publisher">Publisher</RouterLink> |        
+        <RouterLink to="/books">Books</RouterLink> |
+        <RouterLink to="/carrinho">Carrinho</RouterLink> 
+      
       </nav>
     </div>
   </header>
@@ -24,6 +25,7 @@ import { RouterLink, RouterView } from 'vue-router'
 
 #app {
   height: 100vh;
+  
 }
 
 header {
@@ -34,6 +36,12 @@ header {
   display: flex;
   align-items: center;
 }
+
+/*tbody {
+  font-size: 1.8em;
+}*/
+
+
 
 main {
   padding: 10px;
