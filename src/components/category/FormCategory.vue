@@ -54,7 +54,7 @@ export default {
   height: 35px;
   width: 20%;
   margin-left: 2%;
-  background-color: rgb(63, 63, 125);
+  background-color: #2596be;
   color: whitesmoke;
   font-size: 1.2em;
   border-radius: 20px;
